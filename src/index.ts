@@ -1,3 +1,4 @@
+import { verifyJWT } from './security/authMiddleware';
 import express from 'express';
 
 const app = express();
@@ -6,7 +7,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 // 1. Lister tous les étudiants (GET /etudiants)
-app.get('/etudiants', (req, res) => {
+app.get('/etudiants', verifyJWT, (req, res) => {
   res.status(200).json({ message: 'Liste de tous les étudiants' });
 });
 
