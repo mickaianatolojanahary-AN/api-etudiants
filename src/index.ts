@@ -1,9 +1,11 @@
-import { verifyJWT } from './security/authMiddleware';
 import express from 'express';
+import cors from 'cors';
+import { verifyJWT } from './security/authMiddleware';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use(cors()); // Autorise les requêtes de React
 app.use(express.json());
 
 // 1. Lister tous les étudiants (GET /etudiants)
